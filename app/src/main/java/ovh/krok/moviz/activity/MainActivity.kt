@@ -11,6 +11,7 @@ import ovh.krok.moviz.Updatable
 import ovh.krok.moviz.adapter.EventAdapter
 
 class MainActivity : AppCompatActivity() , Updatable {
+    // J'ai mis en Int car le model est pas fait
     val events: ArrayList<Int> = arrayListOf()
 
     lateinit var list: RecyclerView
@@ -48,6 +49,7 @@ class MainActivity : AppCompatActivity() , Updatable {
 
     }
 
+    // Je sais pas si ça nous sera utile un jour
     override fun update() {
         TODO("Not yet implemented")
     }
