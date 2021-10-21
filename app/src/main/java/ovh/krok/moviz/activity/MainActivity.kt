@@ -4,19 +4,23 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.View.OnClickListener
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ovh.krok.moviz.R
 import ovh.krok.moviz.Updatable
 import ovh.krok.moviz.adapter.EventAdapter
 import ovh.krok.moviz.model.Event
 import ovh.krok.moviz.model.Movie
+import java.util.zip.Inflater
 
 class MainActivity : AppCompatActivity() , Updatable {
     // J'ai mis en Int car le model est pas fait
     val events: ArrayList<Event> = arrayListOf()
 
     lateinit var list: RecyclerView
+    lateinit var button : FloatingActionButton
     companion object{
         const val EXTRA_EVENT = "EXTRA_EVENT"
     }
@@ -47,6 +51,14 @@ class MainActivity : AppCompatActivity() , Updatable {
             }
         }
 
+        button = findViewById<FloatingActionButton>(R.id.event_add)
+        button.setOnClickListener{
+            val intent = Intent(applicationContext, AddEventActivity::class.java).apply{
+
+            }
+            startActivity(intent)
+
+        }
     }
 
     // Je sais pas si ça nous sera utile un jour

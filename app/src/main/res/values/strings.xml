@@ -4,4 +4,6 @@
     <string name="date">Date</string>
     <string name="location">Lieu</string>
     <string name="movie_image">Movie image</string>
+    <string name="add_event">Ajouter un évènement</string>
+    <string name="hint_title_movie">Nom du film</string>
 </resources>
