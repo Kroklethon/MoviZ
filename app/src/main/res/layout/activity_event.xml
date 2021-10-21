@@ -41,6 +41,7 @@
             android:text="@string/date"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             >
 
         </TextView>
@@ -59,6 +60,7 @@
             android:text="@string/location"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:layout_marginTop="15dp"
             >
 
