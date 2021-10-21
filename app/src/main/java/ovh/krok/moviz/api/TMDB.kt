@@ -16,17 +16,19 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
 
 
     fun search(query: String, callback: (JSONArray) -> Unit) {
-        var params: HashMap<String, String> = hashMapOf()
+        val params: HashMap<String, String> = hashMapOf()
         params["language"] = "fr" // @TODO: get lang of system
-        params["query"] = serializeParameters(params)
+        params["query"] = query
 
+
+        // Pas compris pourquoi la callback devait être en dehors des arguments, mais voici :
+        // https://stackoverflow.com/a/53376287/14647155
         get(
             "/search/movie",
-            params,
-            Response.Listener<JSONObject> { response ->
-                val obj = response.getJSONArray("results")
-                callback(obj)
-            }
-        )
+            params
+        ) { response ->
+            val obj = response.getJSONArray("results")
+            callback(obj)
+        }
     }
 }

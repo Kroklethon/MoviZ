@@ -11,7 +11,7 @@ abstract class APIGeneric(
     private val API_URL: String,
     private val API_TOKEN: String) {
 
-    protected fun serializeParameters(params: HashMap<String, String>) : String {
+    private fun serializeParameters(params: HashMap<String, String>) : String {
         return params.toList().joinToString("+")
     }
 
