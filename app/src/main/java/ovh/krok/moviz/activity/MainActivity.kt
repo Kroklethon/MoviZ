@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import ovh.krok.moviz.R
 import ovh.krok.moviz.Updatable
 import ovh.krok.moviz.adapter.EventAdapter
+import ovh.krok.moviz.model.Event
+import ovh.krok.moviz.model.Movie
 
 class MainActivity : AppCompatActivity() , Updatable {
     // J'ai mis en Int car le model est pas fait
-    val events: ArrayList<Int> = arrayListOf()
+    val events: ArrayList<Event> = arrayListOf()
 
     lateinit var list: RecyclerView
     companion object{
@@ -22,15 +24,13 @@ class MainActivity : AppCompatActivity() , Updatable {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        //Temporaire ça sert juste à faire que chaque élément de la liste soit clickable
-        for (i in 0..15){
-            events.add(1)
-        }
+        val movie : Movie = Movie("Bienvenue chez les chtis", "caca")
+        val event1 : Event = Event(movie,"21 Octobre 2021", "Chez Simon")
+        events.add(event1)
 
         list = findViewById<RecyclerView>(R.id.event_list)
 
-        list.adapter = object : EventAdapter() {
+        list.adapter = object : EventAdapter(events) {
             override fun onItemClick(view: View) {
                 val intent = Intent(applicationContext, EventActivity::class.java).apply {
                     putExtra(

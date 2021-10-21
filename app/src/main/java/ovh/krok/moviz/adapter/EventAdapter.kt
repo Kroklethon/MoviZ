@@ -7,8 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ovh.krok.moviz.R
+import ovh.krok.moviz.model.Event
 
-abstract class EventAdapter() :
+abstract class EventAdapter(val events : List<Event>) :
     RecyclerView.Adapter<EventAdapter.EventHolder>(){
 
     class EventHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
@@ -24,11 +25,10 @@ abstract class EventAdapter() :
     }
 
     override fun onBindViewHolder(holder: EventHolder, position: Int) {
-        //holder.name.text = events.get(position)
+        holder.name.text = events.get(position).movie.titre
     }
 
     override fun getItemCount(): Int {
-        //return events.size
-        return 15;
+        return events.size
     }
 }
