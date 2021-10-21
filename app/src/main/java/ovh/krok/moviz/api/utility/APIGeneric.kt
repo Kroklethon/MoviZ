@@ -1,7 +1,6 @@
 package ovh.krok.moviz.api.utility
 
 import android.content.Context
-import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -16,15 +15,13 @@ abstract class APIGeneric(
         return params.toList().joinToString("+")
     }
 
-    abstract fun onResponse(obj: JSONObject)
-
     protected fun get(path: String, params: HashMap<String, String>, callback: Response.Listener<JSONObject>) {
         val apiParams = serializeParameters(params)
         val url = API_URL + path + "?${apiParams}"
 
         val queue = Volley.newRequestQueue(context)
         val jsonObjectRequest = object: JsonObjectRequest(
-            Request.Method.GET,
+            Method.GET,
             url,
             null,
             callback,
