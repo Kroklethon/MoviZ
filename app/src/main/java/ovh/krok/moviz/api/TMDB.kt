@@ -29,13 +29,4 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
             }
         )
     }
-
-
-    override fun onResponse(obj: JSONObject) {
-        val result = obj
-    }
-
-
-
-
 }
