@@ -13,7 +13,10 @@ abstract class EventAdapter(val events : List<Event>) :
     RecyclerView.Adapter<EventAdapter.EventHolder>(){
 
     class EventHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        val name = itemView.findViewById<TextView>(R.id.movie_name)
+        val name : TextView = itemView.findViewById<TextView>(R.id.movie_name)
+        val date : TextView = itemView.findViewById<TextView>(R.id.movie_date)
+        val location : TextView = itemView.findViewById<TextView>(R.id.movie_location)
+
     }
     abstract fun onItemClick(view: View)
     abstract fun onLongItemClick(view : View) : Boolean
@@ -26,6 +29,8 @@ abstract class EventAdapter(val events : List<Event>) :
 
     override fun onBindViewHolder(holder: EventHolder, position: Int) {
         holder.name.text = events.get(position).movie.titre
+        holder.date.text = events.get(position).date
+        holder.location.text = events.get(position).location
     }
 
     override fun getItemCount(): Int {
