@@ -6,4 +6,5 @@
     <string name="movie_image">Movie image</string>
     <string name="add_event">Ajouter un évènement</string>
     <string name="hint_title_movie">Nom du film</string>
+    <string name="event_date">Date de l\'évènement non définie</string>
 </resources>
