@@ -18,7 +18,7 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
     fun search(query: String, callback: (JSONArray) -> Unit) {
         val params: HashMap<String, String> = hashMapOf()
         params["language"] = "fr" // @TODO: get lang of system
-        params["query"] = query
+        params["query"] = query.replace(" ", "+")
 
 
         // Pas compris pourquoi la callback devait être en dehors des arguments, mais voici :

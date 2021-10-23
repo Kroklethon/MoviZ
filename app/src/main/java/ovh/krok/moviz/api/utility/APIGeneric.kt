@@ -12,7 +12,11 @@ abstract class APIGeneric(
     private val API_TOKEN: String) {
 
     private fun serializeParameters(params: HashMap<String, String>) : String {
-        return params.toList().joinToString("+")
+        val keyJoined: ArrayList<String> = arrayListOf()
+        params.toList().forEach { (key, value) ->
+            keyJoined.add("$key=$value")
+        }
+        return keyJoined.joinToString("&")
     }
 
     protected fun get(path: String, params: HashMap<String, String>, callback: Response.Listener<JSONObject>) {
