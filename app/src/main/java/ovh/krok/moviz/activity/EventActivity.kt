@@ -5,6 +5,7 @@ import android.os.PersistableBundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import ovh.krok.moviz.R
+import ovh.krok.moviz.api.TMDB
 import ovh.krok.moviz.model.Event
 
 class EventActivity : AppCompatActivity() {
@@ -18,6 +19,11 @@ class EventActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.movie_date).text = event.date
         findViewById<TextView>(R.id.movie_location).text = event.location
 
+
+        var api =  TMDB(this@EventActivity)
+        api.search(event.movie.titre){ response ->
+            println(response)
+        }
 
     }
 }

@@ -32,7 +32,8 @@ abstract class APIGeneric(
             { error -> throw error }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
-                val headers = super.getHeaders()
+                //val headers = super.getHeaders()
+                val headers = HashMap<String, String>()
                 headers["Authorization"] = "Bearer $API_TOKEN"
                 return headers
             }
