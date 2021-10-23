@@ -22,6 +22,7 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
         val params: HashMap<String, String> = hashMapOf()
         params["language"] = "fr" // @TODO: get lang of system
         params["query"] = query.trim().replace(" ", "+")
+        params["include_adult"] = "false"
 
 
         // Pas compris pourquoi la callback devait être en dehors des arguments, mais voici :
@@ -36,7 +37,7 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
             for (i in 0 until obj.length()) {
                 val movieJson = obj.getJSONObject(i)
                 val movie = Movie(
-                    movieJson.getString("original_title") ,
+                    movieJson.getString("title") ,
                     API_ASSET + movieJson.getString("poster_path"),
                     movieJson.getString("overview")
                 )

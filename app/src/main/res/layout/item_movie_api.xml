@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="250dp">
+    android:layout_height="250dp"
+    android:layout_margin="25dp">
 
     <ImageView
         android:contentDescription="@string/movie_image"
@@ -16,7 +17,7 @@
     </ImageView>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:orientation="vertical"
         android:layout_margin="5dp"
         android:layout_weight="0.5">
@@ -25,7 +26,7 @@
             android:id="@+id/movie_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"
             android:text="@string/movie_name"
             android:gravity="center"/>

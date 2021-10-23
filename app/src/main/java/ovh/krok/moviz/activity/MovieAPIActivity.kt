@@ -32,7 +32,6 @@ class MovieAPIActivity:AppCompatActivity() {
         list = findViewById<RecyclerView>(R.id.movie_list)
 
         movieApi.search(movie_name) {
-            println(it)
             list.adapter = object : MovieAPIAdapter(it) {
                 override fun onItemClick(view: View) {
                     val intent = Intent(applicationContext, MainActivity::class.java).apply {
