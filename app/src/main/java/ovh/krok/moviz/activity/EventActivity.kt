@@ -19,11 +19,5 @@ class EventActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.movie_date).text = event.date
         findViewById<TextView>(R.id.movie_location).text = event.location
 
-
-        var api =  TMDB(this@EventActivity)
-        api.search(event.movie.titre){ response ->
-            println(response)
-        }
-
     }
 }

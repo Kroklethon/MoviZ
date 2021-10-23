@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() , Updatable {
 
     lateinit var list: RecyclerView
     lateinit var button : FloatingActionButton
+    lateinit var eventToAdd : Event
     companion object{
         const val EXTRA_EVENT = "EXTRA_EVENT"
     }
@@ -28,9 +29,11 @@ class MainActivity : AppCompatActivity() , Updatable {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val movie : Movie = Movie("Bienvenue chez les chtis", "caca")
-        val event1 : Event = Event(movie,"21 Octobre 2021", "Chez Simon")
-        events.add(event1)
+        if (intent.getSerializableExtra(EXTRA_EVENT) != null){
+            eventToAdd = intent.getSerializableExtra(EXTRA_EVENT) as Event
+            events.add(eventToAdd)
+        }
+
 
         list = findViewById<RecyclerView>(R.id.event_list)
 

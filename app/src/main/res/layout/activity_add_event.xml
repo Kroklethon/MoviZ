@@ -25,6 +25,7 @@
 
 
         <EditText
+            android:id="@+id/text_movie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="25dp"
@@ -47,11 +48,36 @@
         android:layout_gravity="center">
 
         <TextView
+            android:id="@+id/text_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/event_date"
             android:gravity="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:id="@+id/text_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:hint="@string/hint_location" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+        <Button
+            android:id="@+id/button_validate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valider"/>
     </LinearLayout>
 </LinearLayout>

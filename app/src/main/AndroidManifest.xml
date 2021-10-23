@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".activity.EventActivity"/>
         <activity android:name=".activity.AddEventActivity"></activity>
+        <activity android:name=".activity.MovieAPIActivity"></activity>
     </application>
 
 </manifest>

@@ -22,6 +22,8 @@ abstract class APIGeneric(
     protected fun get(path: String, params: HashMap<String, String>, callback: Response.Listener<JSONObject>) {
         val apiParams = serializeParameters(params)
         val url = API_URL + path + "?${apiParams}"
+        println(url)
+
 
         val queue = Volley.newRequestQueue(context)
         val jsonObjectRequest = object: JsonObjectRequest(
