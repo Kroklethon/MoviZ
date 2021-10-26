@@ -1,4 +1,4 @@
-package ovh.krok.moviz.storage
+package ovh.krok.moviz.storage.utility
 
 interface Storage<T> {
     fun insert(obj: T)
