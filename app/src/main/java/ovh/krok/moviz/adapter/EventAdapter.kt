@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso
 import ovh.krok.moviz.R
 import ovh.krok.moviz.model.Event
 
-abstract class EventAdapter(val events : List<Event>) :
+abstract class EventAdapter(val events : ArrayList<Event>) :
     RecyclerView.Adapter<EventAdapter.EventHolder>(){
 
     class EventHolder(itemView : View) : RecyclerView.ViewHolder(itemView){

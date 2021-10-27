@@ -19,7 +19,7 @@ abstract class FileStorage<T>(private val context: Context, name: String, extens
     private var nextId: Int = 1
 
     init {
-
+        read()
     }
 
     protected abstract fun create(id: Int, obj: T): T
@@ -54,6 +54,15 @@ abstract class FileStorage<T>(private val context: Context, name: String, extens
         writer.close()
     }
 
+    fun erase(){
+        data = HashMap()
+        write()
+    }
+    fun insertAll(objs : List<T>){
+        for(obj in objs){
+            insert(obj)
+        }
+    }
     override fun insert(obj: T) {
         data.put(nextId, create(nextId,obj))
         nextId++

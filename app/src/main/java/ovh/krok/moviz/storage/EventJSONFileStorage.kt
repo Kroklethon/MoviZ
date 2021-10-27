@@ -18,7 +18,6 @@ class EventJSONFileStorage(context: Context,name :String) : JSONFileStorage<Even
         m.put(Movie.NAME, obj.movie.titre)
         m.put(Movie.IMAGE_URL, obj.movie.image_url)
         m.put(Movie.DESCRIPTION, obj.movie.description)
-        m.put(Movie.BACKDROP_URL, obj.movie.backdrop_url)
 
         e.put(Event.MOVIE, m)
         e.put(Event.DATE, obj.date)
@@ -27,12 +26,12 @@ class EventJSONFileStorage(context: Context,name :String) : JSONFileStorage<Even
     }
 
     override fun jsonToObject(json: JSONObject): Event {
-        val movie = Movie(
-            json.getString(Movie.NAME),
-            json.getString(Movie.IMAGE_URL),
-            json.getString(Movie.DESCRIPTION),
-            json.getString(Movie.BACKDROP_URL)
-        )
-        return Event(movie, json.getString(Event.DATE), json.getString(Event.LOCATION))
+        val movie_name = json.getJSONObject(Event.MOVIE).getString(Movie.NAME)
+        val movie_image = json.getJSONObject(Event.MOVIE).getString(Movie.IMAGE_URL)
+        val movie_desc = json.getJSONObject(Event.MOVIE).getString(Movie.DESCRIPTION)
+        val movie_backdrop = json.getJSONObject(Event.MOVIE).getString(Movie.BACKDROP_URL)
+        val movie = Movie(movie_name, movie_image, movie_desc, movie_backdrop)
+        val event = Event(movie, json.getString(Event.DATE), json.getString(Event.LOCATION))
+        return event
     }
 }
