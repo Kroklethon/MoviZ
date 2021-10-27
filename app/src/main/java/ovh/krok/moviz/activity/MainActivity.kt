@@ -1,5 +1,6 @@
 package ovh.krok.moviz.activity
 
+import android.Manifest
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,25 +14,48 @@ import ovh.krok.moviz.Updatable
 import ovh.krok.moviz.adapter.EventAdapter
 import ovh.krok.moviz.model.Event
 import ovh.krok.moviz.model.Movie
+import ovh.krok.moviz.storage.EventJSONFileStorage
 import java.util.zip.Inflater
+import android.content.pm.PackageManager
+
+import androidx.core.content.ContextCompat
+import androidx.core.app.ActivityCompat
+
+
+
+
+
+
 
 class MainActivity : AppCompatActivity() , Updatable {
     // J'ai mis en Int car le model est pas fait
     val events: ArrayList<Event> = arrayListOf()
-
+    lateinit var json : EventJSONFileStorage
     lateinit var list: RecyclerView
     lateinit var button : FloatingActionButton
     lateinit var eventToAdd : Event
     companion object{
         const val EXTRA_EVENT = "EXTRA_EVENT"
+        const val READ_STORAGE_CODE = 1
+        const val WRITE_STORAGE_CODE = 2
+
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        if (!checkPermission()) {
+            requestPermission()
+        }
+        json  = EventJSONFileStorage(this, "event")
+
+
+        events.addAll(json.findAll())
         if (intent.getSerializableExtra(EXTRA_EVENT) != null){
             eventToAdd = intent.getSerializableExtra(EXTRA_EVENT) as Event
             events.add(eventToAdd)
+            json.insert(eventToAdd)
+
         }
 
 
@@ -49,7 +73,12 @@ class MainActivity : AppCompatActivity() , Updatable {
             }
 
             override fun onLongItemClick(view: View): Boolean {
-                Toast.makeText(applicationContext, "je veux supprimer", Toast.LENGTH_SHORT).show()
+                println("deleting at index" + list.getChildViewHolder(view).adapterPosition)
+                events.removeAt(list.getChildViewHolder(view).adapterPosition)
+                json.erase()
+                json.insertAll(events)
+                println(events)
+                this.notifyDataSetChanged()
                 return true
             }
         }
@@ -68,4 +97,19 @@ class MainActivity : AppCompatActivity() , Updatable {
     override fun update() {
         TODO("Not yet implemented")
     }
+    private fun checkPermission(): Boolean {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestPermission() {
+        ActivityCompat.requestPermissions(
+            this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+            READ_STORAGE_CODE
+        )
+        ActivityCompat.requestPermissions(
+            this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            WRITE_STORAGE_CODE
+        )
+    }
+
 }
