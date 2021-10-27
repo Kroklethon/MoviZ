@@ -72,11 +72,9 @@ class MainActivity : AppCompatActivity() , Updatable {
             }
 
             override fun onLongItemClick(view: View): Boolean {
-                println("deleting at index" + list.getChildViewHolder(view).adapterPosition)
                 events.removeAt(list.getChildViewHolder(view).adapterPosition)
                 json.erase()
                 json.insertAll(events)
-                println(events)
                 this.notifyDataSetChanged()
                 return true
             }
