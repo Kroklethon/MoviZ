@@ -2,8 +2,10 @@ package ovh.krok.moviz.activity
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.squareup.picasso.Picasso
 import ovh.krok.moviz.R
 import ovh.krok.moviz.api.TMDB
 import ovh.krok.moviz.model.Event
@@ -18,6 +20,7 @@ class EventActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.movie_name).text = event.movie.titre
         findViewById<TextView>(R.id.movie_date).text = event.date
         findViewById<TextView>(R.id.movie_location).text = event.location
+        Picasso.get().load(event.movie.backdrop_url).into(findViewById<ImageView>(R.id.event_movie_backdrop))
 
     }
 }

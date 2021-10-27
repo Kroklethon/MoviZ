@@ -16,7 +16,6 @@ import ovh.krok.moviz.model.Movie
 import java.util.zip.Inflater
 
 class MainActivity : AppCompatActivity() , Updatable {
-    // J'ai mis en Int car le model est pas fait
     val events: ArrayList<Event> = arrayListOf()
 
     lateinit var list: RecyclerView

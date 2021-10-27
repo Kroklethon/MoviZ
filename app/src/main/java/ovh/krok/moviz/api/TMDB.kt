@@ -39,7 +39,8 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
                 val movie = Movie(
                     movieJson.getString("title") ,
                     API_ASSET + movieJson.getString("poster_path"),
-                    movieJson.getString("overview")
+                    movieJson.getString("overview"),
+                    API_ASSET + movieJson.getString("backdrop_path")
                 )
                 movies.add(movie)
             }

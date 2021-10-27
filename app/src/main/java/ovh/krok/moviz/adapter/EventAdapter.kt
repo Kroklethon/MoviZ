@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import ovh.krok.moviz.R
 import ovh.krok.moviz.model.Event
 
@@ -16,7 +17,7 @@ abstract class EventAdapter(val events : List<Event>) :
         val name : TextView = itemView.findViewById<TextView>(R.id.movie_name)
         val date : TextView = itemView.findViewById<TextView>(R.id.movie_date)
         val location : TextView = itemView.findViewById<TextView>(R.id.movie_location)
-
+        val poster : ImageView = itemView.findViewById<ImageView>(R.id.event_movie_poster)
     }
     abstract fun onItemClick(view: View)
     abstract fun onLongItemClick(view : View) : Boolean
@@ -31,6 +32,8 @@ abstract class EventAdapter(val events : List<Event>) :
         holder.name.text = events.get(position).movie.titre
         holder.date.text = events.get(position).date
         holder.location.text = events.get(position).location
+        Picasso.get().load(events.get(position).movie.image_url).into(holder.poster)
+
     }
 
     override fun getItemCount(): Int {
