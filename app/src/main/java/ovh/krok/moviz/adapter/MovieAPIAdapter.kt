@@ -40,32 +40,6 @@ abstract class MovieAPIAdapter(val movies : List<Movie>):
         Picasso.get().load(movies.get(position).image_url).into(holder.image)
     }
 
-    fun setImageFromInternet(itemView : ImageView,position: Int){
-
-        val executor = Executors.newSingleThreadExecutor()
-
-
-        val handler = Handler(Looper.getMainLooper())
-
-        var image: Bitmap? = null
-
-        executor.execute {
-
-            val imageURL = movies.get(position).image_url
-            try {
-                val `in` = java.net.URL(imageURL).openStream()
-                image = BitmapFactory.decodeStream(`in`)
-
-                // Only for making changes in UI
-                handler.post {
-                    itemView.setImageBitmap(image)
-                }
-            }
-            catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
     override fun getItemCount(): Int {
         return movies.size
     }
