@@ -82,8 +82,9 @@ class AddEventActivity :AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
         myHour = hourOfDay
         myMinute = minute
+        val minuteString = if (myMinute < 10) "0$myMinute" else myMinute.toString()
         textDate = findViewById<TextView>(R.id.text_date)
-        textDate.text = "$myDay/$myMonth/$myYear $myHour:$myMinute"
+        textDate.text = "$myDay/$myMonth/$myYear $myHour:$minuteString"
 
     }
 }
