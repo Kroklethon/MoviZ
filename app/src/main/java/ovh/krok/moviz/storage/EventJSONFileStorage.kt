@@ -18,6 +18,7 @@ class EventJSONFileStorage(context: Context,name :String) : JSONFileStorage<Even
         m.put(Movie.NAME, obj.movie.titre)
         m.put(Movie.IMAGE_URL, obj.movie.image_url)
         m.put(Movie.DESCRIPTION, obj.movie.description)
+        m.put(Movie.BACKDROP_URL, obj.movie.backdrop_url)
 
         e.put(Event.MOVIE, m)
         e.put(Event.DATE, obj.date)
