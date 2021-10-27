@@ -8,5 +8,6 @@
     <string name="hint_title_movie">Nom du film</string>
     <string name="event_date">Date de l\'évènement non définie</string>
     <string name="hint_location">Lieu de l\'évènement</string>
+    <string name="description">Description</string>
 
 </resources>
