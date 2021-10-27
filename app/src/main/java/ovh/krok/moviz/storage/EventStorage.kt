@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import ovh.krok.moviz.model.Event
 import ovh.krok.moviz.storage.utility.Storage
 
-object ContactStorage {
+object EventStorage {
 
     private const val PREF_NAME = "ovh.krok.moviz.preferences"
     private const val PREF_STORAGE = "storage"
