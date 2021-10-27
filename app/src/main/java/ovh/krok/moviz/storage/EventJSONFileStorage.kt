@@ -19,6 +19,7 @@ class EventJSONFileStorage(context: Context,name :String) : JSONFileStorage<Even
         m.put(Movie.IMAGE_URL, obj.movie.image_url)
         m.put(Movie.DESCRIPTION, obj.movie.description)
         m.put(Movie.BACKDROP_URL, obj.movie.backdrop_url)
+        m.put(Movie.ID, obj.movie.id)
 
         e.put(Event.MOVIE, m)
         e.put(Event.DATE, obj.date)
@@ -33,8 +34,9 @@ class EventJSONFileStorage(context: Context,name :String) : JSONFileStorage<Even
         val movie_image = movieJson.getString(Movie.IMAGE_URL)
         val movie_desc = movieJson.getString(Movie.DESCRIPTION)
         val movie_backdrop = movieJson.getString(Movie.BACKDROP_URL)
+        val id = movieJson.getString(Movie.ID)
 
-        val movie = Movie(movie_name, movie_image, movie_desc, movie_backdrop)
+        val movie = Movie(movie_name, movie_image, movie_desc, movie_backdrop, id)
 
         return Event(movie, json.getString(Event.DATE), json.getString(Event.LOCATION))
     }

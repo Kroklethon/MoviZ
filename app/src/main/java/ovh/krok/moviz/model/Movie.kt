@@ -6,7 +6,9 @@ import java.io.Serializable
 class Movie(val titre : String,
             val image_url : String,
             val description : String,
-            val backdrop_url : String)
+            val backdrop_url : String,
+            val id : String,
+            )
     : Serializable {
 
     companion object{
@@ -14,6 +16,7 @@ class Movie(val titre : String,
         const val IMAGE_URL = "MOVIE_IMAGE_URL"
         const val BACKDROP_URL = "MOVIE_BACKDROP_URL"
         const val DESCRIPTION = "MOVIE_DESCRIPTION"
+        const val ID = "ID"
     }
 
     // debug

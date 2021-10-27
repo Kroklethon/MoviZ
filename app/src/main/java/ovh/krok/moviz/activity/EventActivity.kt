@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 import ovh.krok.moviz.R
+import ovh.krok.moviz.api.TMDB
 import ovh.krok.moviz.model.Event
 
 class EventActivity : AppCompatActivity() {
@@ -30,7 +31,7 @@ class EventActivity : AppCompatActivity() {
         inviteMsg = "Vous avez été invité à regarder " + event.movie.titre +"\n" +
                 "La séance aura lieu le " + event.date + "\n" +
                 "Le lieu est : " + event.location + "\n" +
-                "Description : " + event.movie.description
+                 TMDB.getMovieLink(event.movie.id)
 
         button = findViewById<FloatingActionButton>(R.id.share_button)
         button.setOnClickListener{

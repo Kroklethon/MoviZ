@@ -15,6 +15,12 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
         private const val API_ASSET = "https://image.tmdb.org/t/p/w500"
         // It's a read-only token, don't bother
         private const val API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwOTYyNTRlMTgwNWRlYTIxNDU2ZWNhY2I3M2I5NGNmNyIsInN1YiI6IjYxNzExMDBmNmQ0Yzk3MDAyNzI5NTU3NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.MafTX6qNT7MEB8hHmjPHuG_XViaqzrQ7VREC_YmGj-o"
+        private const val ROOT = "https://themoviedb.org"
+        
+        fun getMovieLink(idMovie: String) : String {
+            // TODO: 27/10/2021 move it to class function and make the class a singleton 
+            return "$ROOT/movie/$idMovie?language=fr"
+        }
     }
 
 
@@ -45,7 +51,8 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
                     movieJson.getString("title"),
                     if(image_url.isEmpty()) "" else API_ASSET + image_url,
                     movieJson.getString("overview"),
-                    if(backdrop_url.isEmpty()) "" else API_ASSET + backdrop_url
+                    if(backdrop_url.isEmpty()) "" else API_ASSET + backdrop_url,
+                    movieJson.getString("id")
                 )
                 movies.add(movie)
             }
@@ -53,4 +60,5 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
             callback(movies)
         }
     }
+
 }
