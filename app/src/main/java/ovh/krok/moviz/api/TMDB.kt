@@ -35,12 +35,17 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
 
             val movies: ArrayList<Movie> = arrayListOf()
             for (i in 0 until obj.length()) {
+
                 val movieJson = obj.getJSONObject(i)
+
+                val image_url = movieJson.getString("poster_path")
+                val backdrop_url = movieJson.getString("backdrop_path")
+
                 val movie = Movie(
-                    movieJson.getString("title") ,
-                    API_ASSET + movieJson.getString("poster_path"),
+                    movieJson.getString("title"),
+                    if(image_url.isEmpty()) "" else API_ASSET + image_url,
                     movieJson.getString("overview"),
-                    API_ASSET + movieJson.getString("backdrop_path")
+                    if(backdrop_url.isEmpty()) "" else API_ASSET + backdrop_url
                 )
                 movies.add(movie)
             }

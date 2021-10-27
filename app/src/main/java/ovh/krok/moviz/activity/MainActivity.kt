@@ -20,11 +20,8 @@ import android.content.pm.PackageManager
 
 import androidx.core.content.ContextCompat
 import androidx.core.app.ActivityCompat
-
-
-
-
-
+import com.squareup.picasso.Picasso
+import ovh.krok.moviz.BuildConfig
 
 
 class MainActivity : AppCompatActivity() , Updatable {
@@ -42,6 +39,11 @@ class MainActivity : AppCompatActivity() , Updatable {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        if (BuildConfig.DEBUG) {
+            Picasso.get().setIndicatorsEnabled(true)
+        } else {
+            Picasso.get().setIndicatorsEnabled(false)
+        }
 
         if (!checkPermission()) {
             requestPermission()
