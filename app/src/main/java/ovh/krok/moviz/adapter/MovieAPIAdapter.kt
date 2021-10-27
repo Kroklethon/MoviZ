@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import ovh.krok.moviz.R
 import ovh.krok.moviz.model.Movie
 import java.util.concurrent.Executors
@@ -36,7 +37,7 @@ abstract class MovieAPIAdapter(val movies : List<Movie>):
 
     override fun onBindViewHolder(holder: MovieAPIAdapter.MovieHolder, position: Int) {
         holder.name.text = movies.get(position).titre
-        setImageFromInternet(holder.image, position)
+        Picasso.get().load(movies.get(position).image_url).into(holder.image)
     }
 
     fun setImageFromInternet(itemView : ImageView,position: Int){
