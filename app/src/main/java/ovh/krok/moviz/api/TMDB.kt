@@ -23,6 +23,11 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
         }
     }
 
+    fun getDuration(movie: Movie, callback: (Int) -> Unit) {
+        get("/movie/${movie.id}", hashMapOf()) { response ->
+            callback(response.getInt("runtime"))
+        }
+    }
 
     fun search(query: String, callback: (List<Movie>) -> Unit) {
         val params: HashMap<String, String> = hashMapOf()
@@ -53,8 +58,11 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
                     movieJson.getString("overview"),
                     if(backdrop_url.isEmpty()) "" else API_ASSET + backdrop_url,
                     movieJson.getString("id"),
-                    movieJson.getString("runtime").toInt()
+                    0
                 )
+                getDuration(movie) {
+                    movie.duration = it
+                }
                 movies.add(movie)
             }
 

@@ -7,7 +7,7 @@ class Movie(val titre : String,
             val description : String,
             val backdrop_url : String,
             val id : String,
-            val duration: Int
+            var duration: Int
             )
     : Serializable {
 
