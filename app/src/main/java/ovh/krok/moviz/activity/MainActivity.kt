@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() , Updatable {
                     events.removeAt(list.getChildViewHolder(view).adapterPosition)
                     json.erase()
                     json.insertAll(events)
-                    this.notifyDataSetChanged()
+                    this.notifyItemRemoved(list.getChildViewHolder(view).adapterPosition)
 
                 }
                 builder.setNegativeButton("Non"){ _, _->
