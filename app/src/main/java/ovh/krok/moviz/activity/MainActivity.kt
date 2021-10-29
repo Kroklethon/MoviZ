@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ovh.krok.moviz.R
-import ovh.krok.moviz.Updatable
 import ovh.krok.moviz.adapter.EventAdapter
 import ovh.krok.moviz.model.Event
 import ovh.krok.moviz.storage.EventJSONFileStorage
@@ -21,7 +20,7 @@ import androidx.core.app.ActivityCompat
 
 
 
-class MainActivity : AppCompatActivity() , Updatable {
+class MainActivity : AppCompatActivity() {
     val events: ArrayList<Event> = arrayListOf()
     lateinit var json : EventJSONFileStorage
     lateinit var list: RecyclerView
@@ -95,10 +94,6 @@ class MainActivity : AppCompatActivity() , Updatable {
         }
     }
 
-    // Je sais pas si ça nous sera utile un jour
-    override fun update() {
-        TODO("Not yet implemented")
-    }
     private fun checkPermission(): Boolean {
         return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
     }
