@@ -1,6 +1,5 @@
 package ovh.krok.moviz.model
 
-import org.json.JSONObject
 import java.io.Serializable
 
 class Movie(val titre : String,
