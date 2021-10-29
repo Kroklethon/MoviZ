@@ -52,14 +52,21 @@
 
                     <TextView
                         android:id="@+id/movie_date"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
-                        android:layout_marginEnd="25dp"
+                        android:layout_marginEnd="5dp"
                         android:text="@string/date"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium">
 
                     </TextView>
+
+                    <ImageView
+                        android:id="@+id/calendar_button"
+                        android:src="@drawable/ic_calendar_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:tint="?attr/colorSecondary" />
 
 
                 </LinearLayout>

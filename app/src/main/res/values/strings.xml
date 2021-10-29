@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MoviZ</string>
     <string name="movie_name">Nom du film</string>
-    <string name="date">Date</string>
+    <string name="date">01/01/2001 09:45</string>
     <string name="location">Lieu</string>
     <string name="movie_image">Movie image</string>
     <string name="add_event">Ajouter un évènement</string>
