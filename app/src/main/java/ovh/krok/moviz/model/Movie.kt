@@ -8,6 +8,7 @@ class Movie(val titre : String,
             val description : String,
             val backdrop_url : String,
             val id : String,
+            val duration: Int
             )
     : Serializable {
 
@@ -17,6 +18,7 @@ class Movie(val titre : String,
         const val BACKDROP_URL = "MOVIE_BACKDROP_URL"
         const val DESCRIPTION = "MOVIE_DESCRIPTION"
         const val ID = "ID"
+        const val DURATION = "DURATION"
     }
 
     // debug

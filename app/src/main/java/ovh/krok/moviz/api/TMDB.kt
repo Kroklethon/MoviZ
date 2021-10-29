@@ -52,7 +52,8 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
                     if(image_url.isEmpty()) "" else API_ASSET + image_url,
                     movieJson.getString("overview"),
                     if(backdrop_url.isEmpty()) "" else API_ASSET + backdrop_url,
-                    movieJson.getString("id")
+                    movieJson.getString("id"),
+                    movieJson.getString("runtime").toInt()
                 )
                 movies.add(movie)
             }
