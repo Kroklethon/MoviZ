@@ -1,11 +1,11 @@
 package ovh.krok.moviz.activity
 
 import android.Manifest
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.View.OnClickListener
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -13,15 +13,12 @@ import ovh.krok.moviz.R
 import ovh.krok.moviz.Updatable
 import ovh.krok.moviz.adapter.EventAdapter
 import ovh.krok.moviz.model.Event
-import ovh.krok.moviz.model.Movie
 import ovh.krok.moviz.storage.EventJSONFileStorage
-import java.util.zip.Inflater
 import android.content.pm.PackageManager
 
 import androidx.core.content.ContextCompat
 import androidx.core.app.ActivityCompat
-import com.squareup.picasso.Picasso
-import ovh.krok.moviz.BuildConfig
+
 
 
 class MainActivity : AppCompatActivity() , Updatable {
@@ -39,11 +36,6 @@ class MainActivity : AppCompatActivity() , Updatable {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (BuildConfig.DEBUG) {
-            Picasso.get().setIndicatorsEnabled(true)
-        } else {
-            Picasso.get().setIndicatorsEnabled(false)
-        }
 
         if (!checkPermission()) {
             requestPermission()
@@ -74,10 +66,21 @@ class MainActivity : AppCompatActivity() , Updatable {
             }
 
             override fun onLongItemClick(view: View): Boolean {
-                events.removeAt(list.getChildViewHolder(view).adapterPosition)
-                json.erase()
-                json.insertAll(events)
-                this.notifyDataSetChanged()
+                val builder = AlertDialog.Builder(this@MainActivity)
+                builder.setTitle("Supprimer un évènement")
+                builder.setMessage("Voulez-vous supprimer cet évènement ?")
+                builder.setPositiveButton("Oui") { _, _ ->
+                    events.removeAt(list.getChildViewHolder(view).adapterPosition)
+                    json.erase()
+                    json.insertAll(events)
+                    this.notifyDataSetChanged()
+
+                }
+                builder.setNegativeButton("Non"){ _, _->
+                    Toast.makeText(applicationContext,
+                        "Rien n'a été supprimé", Toast.LENGTH_SHORT).show()
+                }
+                builder.show()
                 return true
             }
         }
