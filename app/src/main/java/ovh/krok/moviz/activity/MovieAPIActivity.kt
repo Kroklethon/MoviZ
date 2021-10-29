@@ -13,17 +13,21 @@ import ovh.krok.moviz.adapter.MovieAPIAdapter
 import ovh.krok.moviz.api.TMDB
 import ovh.krok.moviz.model.Event
 import ovh.krok.moviz.model.Movie
+import ovh.krok.moviz.storage.EventJSONFileStorage
 
 class MovieAPIActivity:AppCompatActivity() {
     lateinit var list: RecyclerView
     lateinit var movie_name : String
     lateinit var movie_date : String
     lateinit var movie_location : String
+    lateinit var json : EventJSONFileStorage
     private val movieApi = TMDB(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_api)
+
+        json  = EventJSONFileStorage(this, "event")
 
         movie_name = intent.getSerializableExtra(AddEventActivity.EXTRA_MOVIE) as String
         movie_date = intent.getSerializableExtra(AddEventActivity.EXTRA_DATE) as String
@@ -34,10 +38,7 @@ class MovieAPIActivity:AppCompatActivity() {
         list.adapter = object : MovieAPIAdapter() {
             override fun onItemClick(view: View, movies: List<Movie>) {
                 val intent = Intent(applicationContext, MainActivity::class.java).apply {
-                    putExtra(
-                        MainActivity.EXTRA_EVENT,
-                        Event(movies.get(list.getChildViewHolder(view).adapterPosition), movie_date, movie_location)
-                    )
+                        json.insert(Event(movies.get(list.getChildViewHolder(view).adapterPosition), movie_date, movie_location))
                 }
                 startActivity(intent)
             }

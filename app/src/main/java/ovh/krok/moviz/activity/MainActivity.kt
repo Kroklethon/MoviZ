@@ -43,12 +43,6 @@ class MainActivity : AppCompatActivity() {
 
 
         events.addAll(json.findAll())
-        if (intent.getSerializableExtra(EXTRA_EVENT) != null){
-            eventToAdd = intent.getSerializableExtra(EXTRA_EVENT) as Event
-            events.add(eventToAdd)
-            json.insert(eventToAdd)
-
-        }
 
 
         list = findViewById<RecyclerView>(R.id.event_list)
