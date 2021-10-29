@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.MoviZ" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/clouds</item>
-        <item name="colorPrimaryVariant">@color/silver</item>
+        <item name="colorPrimary">@color/peter_river</item>
+        <item name="colorPrimaryVariant">@color/belized_hole</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/peter_river</item>
@@ -11,7 +11,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <item name="windowNoTitle">true</item>
+        <item name="windowNoTitle">false</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
