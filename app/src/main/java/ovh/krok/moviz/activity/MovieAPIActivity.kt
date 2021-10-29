@@ -31,24 +31,26 @@ class MovieAPIActivity:AppCompatActivity() {
 
         list = findViewById<RecyclerView>(R.id.movie_list)
 
-        movieApi.search(movie_name) {
-            list.adapter = object : MovieAPIAdapter(it) {
-                override fun onItemClick(view: View) {
-                    val intent = Intent(applicationContext, MainActivity::class.java).apply {
-                        putExtra(
-                            MainActivity.EXTRA_EVENT,
-                            Event(it.get(list.getChildViewHolder(view).adapterPosition), movie_date, movie_location)
-                        )
-                    }
-                    startActivity(intent)
+        list.adapter = object : MovieAPIAdapter() {
+            override fun onItemClick(view: View, movies: List<Movie>) {
+                val intent = Intent(applicationContext, MainActivity::class.java).apply {
+                    putExtra(
+                        MainActivity.EXTRA_EVENT,
+                        Event(movies.get(list.getChildViewHolder(view).adapterPosition), movie_date, movie_location)
+                    )
                 }
-
-                override fun onLongItemClick(view: View): Boolean {
-                    Toast.makeText(applicationContext, "je veux supprimer", Toast.LENGTH_SHORT)
-                        .show()
-                    return true
-                }
+                startActivity(intent)
             }
+
+            override fun onLongItemClick(view: View): Boolean {
+                Toast.makeText(applicationContext, "je veux supprimer", Toast.LENGTH_SHORT)
+                    .show()
+                return true
+            }
+        }
+        movieApi.search(movie_name) {
+            (list.adapter as MovieAPIAdapter).movies = it
+            (list.adapter as MovieAPIAdapter).notifyDataSetChanged()
         }
 
     }

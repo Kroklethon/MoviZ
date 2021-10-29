@@ -13,18 +13,22 @@ import ovh.krok.moviz.model.Movie
 
 
 
-abstract class MovieAPIAdapter(val movies : List<Movie>):
+abstract class MovieAPIAdapter():
     RecyclerView.Adapter<MovieAPIAdapter.MovieHolder>(){
+
+    var movies : List<Movie> = emptyList()
 
     class MovieHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val name : TextView = itemView.findViewById<TextView>(R.id.movie_name)
         val image : ImageView = itemView.findViewById<ImageView>(R.id.movie_image)
     }
-    abstract fun onItemClick(view: View)
+
+    abstract fun onItemClick(view: View, movies: List<Movie>)
     abstract fun onLongItemClick(view : View) : Boolean
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie_api, parent, false)
-        view.setOnClickListener{view -> onItemClick(view)}
+        view.setOnClickListener{view -> onItemClick(view, movies)}
         view.setOnLongClickListener{view -> onLongItemClick(view)}
         return MovieHolder(view)
     }
