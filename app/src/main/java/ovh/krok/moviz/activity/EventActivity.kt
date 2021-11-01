@@ -1,7 +1,10 @@
 package ovh.krok.moviz.activity
 
+import android.content.ContentValues
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,6 +19,7 @@ class EventActivity : AppCompatActivity() {
     private lateinit var event : Event
     lateinit var button : FloatingActionButton
     lateinit var inviteMsg : String
+    lateinit var calendar_button: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +44,20 @@ class EventActivity : AppCompatActivity() {
             shareIntent.type="text/plain"
             shareIntent.putExtra(Intent.EXTRA_TEXT, inviteMsg)
             startActivity(Intent.createChooser(shareIntent,"Share via"))
+
+        }
+
+        calendar_button = findViewById<ImageView>(R.id.calendar_button)
+        calendar_button.setOnClickListener{
+            val values = ContentValues().apply {
+                put(CalendarContract.Events.DTSTART, startMillis)
+                put(CalendarContract.Events.DTEND, endMillis)
+                put(CalendarContract.Events.TITLE, "Jazzercise")
+                put(CalendarContract.Events.DESCRIPTION, "Group workout")
+                put(CalendarContract.Events.CALENDAR_ID, calID)
+                put(CalendarContract.Events.EVENT_TIMEZONE, "America/Los_Angeles")
+            }
+            val uri: Uri = contentResolver.insert(CalendarContract.Events.CONTENT_URI, values)
 
         }
         if (event.movie.backdrop_url.isEmpty()) {
