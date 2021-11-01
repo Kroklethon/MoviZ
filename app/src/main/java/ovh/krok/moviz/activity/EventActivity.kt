@@ -1,10 +1,7 @@
 package ovh.krok.moviz.activity
 
-import android.content.ContentValues
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.CalendarContract
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,6 +10,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 import ovh.krok.moviz.R
 import ovh.krok.moviz.api.TMDB
+import ovh.krok.moviz.helpers.helpers
 import ovh.krok.moviz.model.Event
 
 class EventActivity : AppCompatActivity() {
@@ -46,19 +44,17 @@ class EventActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(shareIntent,"Share via"))
 
         }
-
         calendar_button = findViewById<ImageView>(R.id.calendar_button)
         calendar_button.setOnClickListener{
-            val values = ContentValues().apply {
-                put(CalendarContract.Events.DTSTART, startMillis)
-                put(CalendarContract.Events.DTEND, endMillis)
-                put(CalendarContract.Events.TITLE, "Jazzercise")
-                put(CalendarContract.Events.DESCRIPTION, "Group workout")
-                put(CalendarContract.Events.CALENDAR_ID, calID)
-                put(CalendarContract.Events.EVENT_TIMEZONE, "America/Los_Angeles")
-            }
-            val uri: Uri = contentResolver.insert(CalendarContract.Events.CONTENT_URI, values)
+            val intent = Intent(Intent.ACTION_EDIT)
+            intent.type = "vnd.android.cursor.item/event"
+            intent.putExtra("beginTime",helpers.dateToLong(event.date))
+            intent.putExtra("endTime",helpers.getendMillis(helpers.dateToLong(event.date), event.movie.duration))
+            intent.putExtra("title", event.movie.titre)
+            intent.putExtra("description", "Vous avez été invité à voir un film")
+            intent.putExtra("eventLocation",event.location)
 
+            startActivity(intent)
         }
         if (event.movie.backdrop_url.isEmpty()) {
             backdrop.visibility = View.GONE

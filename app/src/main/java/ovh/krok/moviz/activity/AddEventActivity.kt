@@ -84,8 +84,10 @@ class AddEventActivity :AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         myMinute = minute
         val minuteString = if (myMinute < 10) "0$myMinute" else myMinute.toString()
         val hourString = if (myHour < 10) "0$myHour" else myHour.toString()
+        val dayString = if (myDay < 10) "0$myDay" else myDay.toString()
+        val monthString = if (myMonth < 10) "0$myMonth" else myMonth.toString()
 
         textDate = findViewById<TextView>(R.id.text_date)
-        textDate.text = "$myDay/$myMonth/$myYear $hourString:$minuteString"
+        textDate.text = "$dayString/$monthString/$myYear $hourString:$minuteString"
     }
 }
