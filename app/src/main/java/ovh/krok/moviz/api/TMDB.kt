@@ -25,7 +25,7 @@ class TMDB(context: Context) : APIGeneric(context, API_URL, API_TOKEN){
 
     fun getDuration(movie: Movie, callback: (Int) -> Unit) {
         get("/movie/${movie.id}", hashMapOf()) { response ->
-            callback(response.getInt("runtime"))
+            callback(response.optInt("runtime",0))
         }
     }
 
