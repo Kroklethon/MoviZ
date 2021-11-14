@@ -1,3 +1,5 @@
+//Application réalisée par Evan L'HUISSIER et Simon LEONARD
+
 package ovh.krok.moviz.activity
 
 import android.Manifest
